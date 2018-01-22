@@ -48,7 +48,7 @@ function createFinbook(){
 }
 
 function loginUser(){
-  var email = $('#email')[0].value.toSTring().trim();
+  var email = $('#email')[0].value.toString().trim();
   var pwd = $('#password')[0].value.toString().trim();;
   var targetUrl = HOST + 'appinit/login?';
   targetUrl = targetUrl + 'userid=' + email + 'password=' + password;
