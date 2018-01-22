@@ -1,0 +1,6 @@
+{
+  "port": "1088",
+  "sslport":"8443",
+  "DBHost": "localhost",
+  "DBName": "perFin"
+}

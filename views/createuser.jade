@@ -1,0 +1,32 @@
+extends layout
+block content
+  script(src='/javascripts/createUser.js')
+  h1= title
+  p
+  .inputdata
+    用户名 
+    br
+    input(type='text' id='nickname')
+    br
+    br
+    注册邮箱
+    br
+    input(type='text' id='email')
+    br
+    br
+    账本包
+    br
+    input(type='text' id='bookpack' placeholder='多个账本包用逗号分开')
+    br
+    br
+    付款方式    
+    br
+    input(type='text' id='paymethod' placeholder='多个付款方式用逗号分开')
+    br
+    br
+    密码    
+    br
+    input(type='password' id='password' )
+    br
+    br
+    button(id='createUser') 创建账户

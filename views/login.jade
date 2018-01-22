@@ -1,0 +1,18 @@
+extends layout
+block content
+  script(src='/javascripts/loginUser.js')
+  h1= title
+  div#login
+    p
+    .inputdata
+      登录邮箱 
+      br
+      input(type='text' id='email')
+      br
+      br
+      密码    
+      br
+      input(type='password' id='password' )
+      br
+      br
+      button(id='loginUser') 登录

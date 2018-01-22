@@ -1,0 +1,22 @@
+extends layout
+block content
+  script(src='/javascripts/createFinbook.js')
+  h1= title
+  p
+  .inputdata
+    账本名称
+    br
+    input(type='text' id='bookname')
+    br
+    br
+    所有人
+    br
+    input(type='text' id='owner')
+    br
+    br
+    账本包
+    br
+    input(type='text' id='bookpack' placeholder='默认账本包')
+    br
+    br
+    button(id='createBook') 创建账本
