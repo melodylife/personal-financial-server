@@ -51,7 +51,7 @@ function loginUser(){
   var email = $('#email')[0].value.toString().trim();
   var pwd = $('#password')[0].value.toString().trim();;
   var targetUrl = HOST + 'appinit/login?';
-  targetUrl = targetUrl + 'userid=' + email + 'password=' + password;
+  targetUrl = targetUrl + 'userid=' + email + '&password=' + pwd;
   $.ajax({
     url: targetUrl,
     type: 'GET',
