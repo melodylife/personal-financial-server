@@ -62,7 +62,7 @@ function loginUser(){
       }
       else{
         Cookies.set('perfibook' , 'email:'+email , {expires:7});
-        $('#loginwindow').hide();
+        $('#loginwindow').html = '';
       }
     }
 
