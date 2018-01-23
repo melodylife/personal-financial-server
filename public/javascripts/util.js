@@ -63,7 +63,7 @@ function loginUser(){
       else{
         Cookies.set('perfibook' , 'email:'+email , {expires:7});
         console.log('Login succeed');
-        $('#loginwindow')[0].html = '';
+        $('#loginwindow')[0].hide();
       }
     }
 
