@@ -64,7 +64,7 @@ function loginUser(){
         Cookies.set('perfibook' , 'email:'+email , {expires:7});
         console.log('Login succeed');
         $('div#login').html('');
-        window.location.href = HOST + 'demo/index';
+        window.location.href = HOST + 'demo/';
       }
     }
 
