@@ -16,6 +16,16 @@ function postRequestHandler(targeturl , payload){
   });
 }
 
+function getBasicUserData(queryUrl , opFunc){
+  $.ajax({
+    url: queryUrl,
+    type: 'GET',
+    success: function(result){
+      opFunc(result.data);
+    }
+  });
+}
+
 function test(){
  // alert('This is a test');
 }

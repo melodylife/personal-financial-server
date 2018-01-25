@@ -14,4 +14,9 @@ router.post('/reg' , function(req , res){
   userInfo.addNewUser(jsonStr , res);
 });
 
+router.get('/readuser' , function(req , res){
+  var userID = req.query.userid;
+  userInfo.findUser(userID , res);
+});
+
 module.exports = router;

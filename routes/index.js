@@ -19,4 +19,8 @@ router.get('/login', function(req, res) {
   res.render('login', { title: 'Express' });
 });
 
+router.get('/recorditems', function(req, res) {
+  res.render('recorditems', { title: 'Express' });
+});
+
 module.exports = router;

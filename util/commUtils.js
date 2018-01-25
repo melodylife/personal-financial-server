@@ -40,6 +40,11 @@ exports.findWithCondition = function(objName , optObj , condition , res){
         rst.result = constants.resStatus.SUCCESS;
         rst.data = data
       }
+      for(var i = 0; i < data.length; i++){
+        if(data[i].password != undefined){
+          data[i].password = "";
+        }
+      }
       rst.data = data;
       res.send(rst);
       return;

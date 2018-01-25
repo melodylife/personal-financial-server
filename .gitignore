@@ -1,0 +1,6 @@
+node_modules/*
+*.crt
+*.key
+certpwd.json
+nohup*
+.remote-sync.json

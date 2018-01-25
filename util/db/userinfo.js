@@ -26,8 +26,8 @@ var userInfo = mongoose.model('userInfo' , userInfoSchema);
 
 exports.addNewUser = function(jsonStr , res){
   var userinfo = JSON.parse(jsonStr);
-  
-  //secure the password 
+
+  //secure the password
   var plainPwd = userinfo.password;
   var salt = util.ramString(plainPwd.length);
   var pwdObj = new Object();
@@ -36,7 +36,7 @@ exports.addNewUser = function(jsonStr , res){
   pwdObj.hashedPwd = md5(pwdPayload);
   userinfo.password = pwdObj;
   var newUser = new userInfo(userinfo);
-  
+
   util.saveTable("userinfo" , newUser , res);
 }
 
