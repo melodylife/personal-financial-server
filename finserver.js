@@ -40,7 +40,7 @@ app.use(bodyParser.raw());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/demo', routes);
+app.use('/', routes);
 app.use('/appinit', appinit);
 app.use('/tblOps' , tblOperations);
 app.use('/healthcheck' , healthcheckhandler);

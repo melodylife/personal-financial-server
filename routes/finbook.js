@@ -7,9 +7,10 @@ router.post('/savefinRec', function(req, res) {
   console.log('Here\'s the saving fin book ' + req.body);
   var rawBody = JSON.parse(req.body);
   var bookRecWithName = new Object();
-  bookRecWithName.bookName = rawBody.bookName;
-  bookRecWithName.newRec = rawBody.bookName;
-  finBook.createNewRec(bookRecWithName , res);
+  console.log('Route save fin rec' + rawBody);
+  //bookRecWithName.bookName = rawBody.bookName;
+  //bookRecWithName.newRec = rawBody.bookName;
+  finBook.createNewRec(rawBody , res);
 });
 
 router.post('/crnewbook' , function(req , res){

@@ -3,7 +3,7 @@ var HOST = 'http://perfi.changworkshop.com:1088/';
 function postRequestHandler(targeturl , payload){
   var encoder = new Base64()
   var encodePayload = encoder.encode(payload);
-  console.log(encodePayload);
+  console.log(payload);
   $.ajax({
     url: targeturl,
     type: 'POST',
@@ -26,20 +26,50 @@ function getBasicUserData(queryUrl , opFunc){
   });
 }
 
+function fillDropDownwithData(targetUrl , field , dropdownid , placementid){
+
+  getBasicUserData(targetUrl , function(data){
+    console.log("Here are the data " + data[0]._id);
+    var selectHtml = "<select id='" + dropdownid + "'>VALUES</select>";
+    var values = "";
+    for(var i = 0; i < data[0][field].length; i++){
+      values += '<option value="' + data[0][field][i] + '">' + data[0][field][i] + '</option>';
+    }
+    values = selectHtml.replace("VALUES" , values);
+    $('#' + placementid).html(values);
+  });
+}
+
 function test(){
  // alert('This is a test');
 }
 
 function uploadRec() {
   alert('Uploading the Recs');
+  var payloadRaw = new Object();
 
+  var payment = new Object();
+  payment.currency = $('select#cur')[0].value;
+  payment.pay_method = $('select#payment_method_list')[0].value;
+  payment.amount = $('input#amount')[0].value;
+
+  payloadRaw.createDate = $('input#rectime')[0].value;
+  payloadRaw.bookName = $('select#finbooklist')[0].value;
+  payloadRaw.payment = payment;
+
+  var targetUrl = HOST + 'finbook/savefinRec';
+  postRequestHandler(targetUrl , JSON.stringify(payloadRaw));
 }
 
 
 function createFinbook(){
+  var cookieValue = JSON.parse(Cookies.get('perfibook'));
+
   var bookName = $('#bookname')[0].value;
-  var bookPack = $('#bookpack')[0].value;
-  var ownerName = $('#owner')[0].value;
+  var bookPack = $('#book_pack_list')[0].value;
+  var ownerName = cookieValue.email;
+
+  console.log(bookName + bookPack + ownerName);
   if((bookName.trim() == '') || (bookPack.trim() == '') || (ownerName.trim() == '')){
     alert('The data can\'t be empty');
   }
@@ -71,10 +101,14 @@ function loginUser(){
         alert('Failed to login');
       }
       else{
-        Cookies.set('perfibook' , 'email:'+email , {expires:7});
+        var cookieValueRaw = new Object();
+        cookieValueRaw.email = email;
+
+        var cookieValue = JSON.stringify(cookieValueRaw);
+        Cookies.set('perfibook' , cookieValue , {expires:7});
         console.log('Login succeed');
         $('div#login').html('');
-        window.location.href = HOST + 'demo/';
+        window.location.href = HOST + '';
       }
     }
 

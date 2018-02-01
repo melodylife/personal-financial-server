@@ -1,41 +1,33 @@
 extends layout
 block content
+  script(src='/javascripts/recorditems.js')
   h1= title
   p
   .inputdata
     时间
     br
-    input(type='datetime-local' name='recTime')
+    input(type='text' id='rectime')
     br
     br
     数目
     br
-    input(type='text' name='amount')
+    input(type='text' id='amount')
     br
     br
     币种
     br
-    select(name='cur')
+    select(id='cur')
       option(value='CNY') CNY
     br
     br
-    分类
+    账本
     br
-    div#category
-    select(name='cur')
-      option(value='meal') 吃饭
-      option(value='shopping') 购物
-      option(value='daily') 日常用品
+    div#finbook_list
     br
     br
     付款方式
     br
     div#paymethods
-    br
-    br
-    支付信息
-    br
-    input(type='text' name='pay_info')
     br
     br
     button(id='uprec') Click Me
