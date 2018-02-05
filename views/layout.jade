@@ -1,8 +1,10 @@
 doctype html
 html
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    <!--title= title-->
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    <!--link(rel='stylesheet', href='/stylesheets/style.css')-->
     link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous")
     script(src='http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js')
     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous")
@@ -11,4 +13,13 @@ html
     script(src='/javascripts/util.js')
     script(src='/javascripts/layoutInit.js')
   body
-    block content
+    div.container
+      div.row
+        ul.nav.navbar-nav.navbar-dark
+          li.nav-item
+            a.nav-link.active(href='createuser') 注册用户
+          li.nav-item
+            a.nav-link(href='createfinbook') 添加账本
+          li.nav-item
+            a.nav-link(href='recorditems') 添加账单记录
+      block content

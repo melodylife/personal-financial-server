@@ -54,7 +54,8 @@ function uploadRec() {
   payment.amount = $('input#amount')[0].value;
 
   payloadRaw.createDate = $('input#rectime')[0].value;
-  payloadRaw.bookName = $('select#finbooklist')[0].value;
+  payloadRaw.recid = $('select#finbooklist')[0].value;
+  payloadRaw.bookName = $('select#finbooklist')[0].text;
   payloadRaw.payment = payment;
 
   var targetUrl = HOST + 'finbook/savefinRec';

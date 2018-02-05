@@ -1,33 +1,27 @@
 extends layout
 block content
   script(src='/javascripts/recorditems.js')
-  h1= title
-  p
-  .inputdata
-    时间
-    br
-    input(type='text' id='rectime')
-    br
-    br
-    数目
-    br
-    input(type='text' id='amount')
-    br
-    br
-    币种
-    br
-    select(id='cur')
-      option(value='CNY') CNY
-    br
-    br
-    账本
-    br
-    div#finbook_list
-    br
-    br
-    付款方式
-    br
-    div#paymethods
-    br
-    br
-    button(id='uprec') Click Me
+  div.row
+    div.col(backgroud-color=red)
+      p 时间
+      input(type='text' id='rectime')
+      br
+      br
+      p 数目
+      input(type='text' id='amount')
+      br
+      br
+      p 币种
+      select(id='cur')
+        option(value='CNY') CNY
+      br
+      br
+      p 账本
+      div#finbook_list
+      br
+      br
+      p 付款方式
+      div#paymethods
+      br
+      br
+      button(id='uprec') Click Me

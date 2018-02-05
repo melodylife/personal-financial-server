@@ -9,7 +9,10 @@ $(function(){
     var html = '<select id = "finbooklist">VALUES</select>'
     for(var i = 0; i < data.length; i++){
       var bookName = data[i].finBookName;
-      var bookId = 'finbook_' + data[0]._id;
+      //var bookId = 'finbook_' + data[0]._id;
+      var processedOwnerId = data[i].ownerID.replace('@' , '_');
+      var bookId = 'finbook_' + processedOwnerId + ':' + data[i]._id;
+      //var bookObjId = data[i]._id;
       optionsHTML += '<option value="' + bookId + '">' + bookName + '</option>';
     }
     html = html.replace('VALUES' , optionsHTML);
