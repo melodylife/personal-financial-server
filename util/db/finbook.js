@@ -20,7 +20,7 @@ var finBookHeaderSchema = new schema({
 var finBookBodySchema = new schema({
   recID: objectId,
   createDate: {type: Date , default:Date.now},
-  finbookId: String,
+  finbookId: schema.Types.ObjectId,
   payment: {
     amount: Number,
     currency: {type: String , default: "CNY"},
@@ -46,7 +46,7 @@ exports.createNewRec = function(bookWithName , res){
 
   var rec = new Object();
   rec.createDate = bookWithName.date;
-  rec.finbookId = bookInfoArr[1];
+  rec.finbookId = new mongoose.Types.ObjectId(bookInfoArr[1]);
   rec.payment = bookWithName.payment;
   rec.amount = bookWithName.amount;
   console.log('Save the rec' + rec.toString());

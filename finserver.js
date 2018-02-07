@@ -16,6 +16,7 @@ var tblOperations = require('./routes/tblOps');
 var appinit = require('./routes/appinit');
 var finbook = require('./routes/finbook');
 var healthcheckhandler = require('./routes/healthcheck');
+var report = require('./routes/report');
 
 //homebrew middleware
 var jsonParser = require('./util/middleware/jsonParser');
@@ -45,6 +46,7 @@ app.use('/appinit', appinit);
 app.use('/tblOps' , tblOperations);
 app.use('/healthcheck' , healthcheckhandler);
 app.use('/finbook' , finbook);
+app.use('/report' , report);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
