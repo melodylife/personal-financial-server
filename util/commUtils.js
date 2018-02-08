@@ -27,6 +27,33 @@ exports.saveTable = function(objName , optObject , res){
   });
 }
 
+
+exports.aggregateOpt = function(objName , optObj , condition , res){
+  optObj.aggregate(condition , function(err , data){
+    if(!err){
+      if(0 == data.length || null == data){
+        var rst = new Object();
+        rst.result = constants.resStatus.NO_DATA;
+        console.log('there\'s no data in ' + objName);
+      }
+      else{
+        var rst = new Object();
+        rst.result = constants.resStatus.SUCCESS;
+        rst.data = data
+      }
+      rst.data = data;
+      res.send(rst);
+      return;
+    }
+    else{
+      res.send({"result":constants.resStatus.FAILED , "error":err.message});
+      return;
+    }
+  }
+  );
+}
+
+
 exports.findWithCondition = function(objName , optObj , condition , res){
   optObj.find(condition , function(err , data){
     if(!err){

@@ -3,9 +3,11 @@ var router = express.Router();
 var userInfo = require('../util/db/userinfo');
 var finbookInfo = require('../util/db/finbook');
 
-router.post('/reportdata', function(req, res) {
+router.get('/reportdata', function(req, res) {
   console.log('This is report');
-  res.end();
+  //res.end();
+  var userID = req.query.userid;
+  finbookInfo.listRecbyFinbook(userID , res)
 });
 
 

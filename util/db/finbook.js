@@ -55,6 +55,26 @@ exports.createNewRec = function(bookWithName , res){
   util.saveTable("Financial Record" , finBookRec , res);
 }
 
+exports.listRecbyFinbook = function(userID , res){
+  //var matchCondition = new Object();
+  var matchCondition = {"$match": {ownerID : userID}};
+  var joinQuery = { "$lookup": {
+      from: "finbook_goodeffort2003_gmail.coms",
+      localField: "_id",
+      foreignField: "finbookId",
+      as: "reslist"
+    }
+  }
+
+  var queryArr = new Array()
+  queryArr.push(matchCondition);
+  queryArr.push(joinQuery);
+  console.log(queryArr.toString());
+  util.aggregateOpt('finbookInfo' , finHeader , queryArr, res );
+
+}
+
 exports.listFinbookbyOwner = function(userID , res){
-  util.findWithCondition('finbookInfo' , finHeader , {ownerID: userID} , res);
+  util.findWithCondition('finBookInfo' , finHeader , {ownerID: userID} , res);
+
 }
