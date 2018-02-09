@@ -7,7 +7,9 @@ router.get('/reportdata', function(req, res) {
   console.log('This is report');
   //res.end();
   var userID = req.query.userid;
-  finbookInfo.listRecbyFinbook(userID , res)
+  var startDate = req.query.startdate;
+  var endDate = req.query.enddate;
+  finbookInfo.listRecbyFinbook(userID , startDate , endDate , res)
 });
 
 

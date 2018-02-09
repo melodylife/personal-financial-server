@@ -4,6 +4,7 @@ var conf = require('../../conf/serConf.json');
 var util = require('../commUtils');
 var md5  = require('md5');
 var constants = require('../constants');
+var moment = require('moment');
 
 var dbConnectivityConf = 'mongodb://' + conf.DBHost + '/' + conf.DBName;
 var objectId = schema.Types.ObjectId;
@@ -55,20 +56,40 @@ exports.createNewRec = function(bookWithName , res){
   util.saveTable("Financial Record" , finBookRec , res);
 }
 
-exports.listRecbyFinbook = function(userID , res){
+exports.listRecbyFinbook = function(userID , clientStartDate , clientEndDate, res){
   //var matchCondition = new Object();
   var matchCondition = {"$match": {ownerID : userID}};
   var joinQuery = { "$lookup": {
       from: "finbook_goodeffort2003_gmail.coms",
       localField: "_id",
       foreignField: "finbookId",
-      as: "reslist"
+      as: "reclist"
     }
   }
+  var unwindList = {"$unwind": "$reclist"};
+  var date = "2018-02-06";
+  var endDate = moment().format('YYYY-MM-DD');
+  var startDate = moment().subtract(2 , 'day').format('YYYY-MM-DD');
+
+  console.log('The start is %s and the end is %s' , clientStartDate  , clientEndDate);
+
+  var filterendDates = {"$match": {"reclist.createDate": {"$lt": new Date(clientEndDate)}}};
+  var filterstartDates = {"$match": {"reclist.createDate": {"$gt": new Date(clientStartDate)}}};
 
   var queryArr = new Array()
   queryArr.push(matchCondition);
   queryArr.push(joinQuery);
+  queryArr.push(unwindList);
+
+  if(clientEndDate != 0){
+    queryArr.push(filterendDates);
+  }
+
+  if(clientStartDate != 0){
+    queryArr.push(filterstartDates);
+  }
+
+
   console.log(queryArr.toString());
   util.aggregateOpt('finbookInfo' , finHeader , queryArr, res );
 
