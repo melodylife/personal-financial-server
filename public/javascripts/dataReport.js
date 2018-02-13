@@ -1,22 +1,41 @@
 function processReportData(data){
-  var colHeadersArray = ['Date' , 'Fin Book' , 'Fin Pack' , 'Pay Method' , 'Amount'];
-  var colWidthsArray = [100 , 300 , 300 , 300 , 80];
-  var dataArray = new Array();
+
+  var chartDateObj = new Object();
+
   for(var i = 0; i < data.length; i++){
     var crDate = moment(data[i].reclist.createDate).format('YYYY-MM-DD');
-    var finBook = data[i].finBookName;
-    var finPack = data[i].bookPack;
-    var payMethod = data[i].reclist.payment.pay_method;
-    var amount = data[i].reclist.payment.amount;
 
-    var tblRow = [crDate , finBook , finPack , payMethod , amount];
-    dataArray.push(tblRow);
+    if(chartDateObj[crDate] == undefined){
+      chartDateObj[crDate] = 0;
+    }
+    else{
+      chartDateObj[crDate] += data[i].reclist.payment.amount;
+    }
   }
 
-  $('#reportTable').jexcel({
-    data: dataArray,
-    colHeaders: colHeadersArray,
-    colWidths: colWidthsArray,
-    orderBy: 1
+  var lineChartCanvas = $('#lineChart');
+  var lineChart = new Chart(lineChartCanvas , {
+    type: 'line',
+    data: {
+      datasets: [{
+        label: 'Spend',
+        data: Object.values(chartDateObj)
+      }],
+      labels: Object.keys(chartDateObj)
+    },
+    options: {
+      onClick: function (evt){
+        var activePoint = this.getElementsAtEvent(evt)[0];
+        if(activePoint._chart.data != undefined){
+          var data = activePoint._chart.data;
+          var labels = data.labels;
+          var dataSets = data.datasets;
+          var datasetIndex = activePoint._index;
+
+          var label = labels[datasetIndex];
+          console.log(label);
+        }
+      }
+    }
   });
 }

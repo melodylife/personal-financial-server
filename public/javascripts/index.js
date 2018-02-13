@@ -5,7 +5,7 @@ $(function() {
   var userID = cookieValue.email;
   //Report last 3 days' data
   var endDate = moment().add(1 , 'day').format('YYYY-MM-DD');
-  var startDate = moment().subtract(4 , 'day').format('YYYY-MM-DD');
+  var startDate = moment().subtract(10 , 'day').format('YYYY-MM-DD');
 
   console.log('Here are the dates %s and %s' , endDate , startDate);
 
