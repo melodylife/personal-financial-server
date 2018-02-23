@@ -1,4 +1,45 @@
 var HOST = 'http://perfi.changworkshop.com:1088/';
+var colorSet = [
+  '#e6194b',//red
+  '#3cb44b',//green
+  '#ffe119',//yellow
+  '#0082c8',//blue
+  '#f58231',//orange
+  '#911eb4',//purple
+  '#46f0f0',//cyan
+  '#f032e6',//magenta
+  '#d2f53c',//lime
+  '#fabebe',//pink
+  '#008080',//teal
+  '#e6beff',//lavender
+  '#aa6e28',//brown
+  '#fffac8',//beige
+  '#800000',//maroon
+  '#aaffc3',//mint
+  '#808000',//olive
+  '#ffd8b1',//coral
+  '#000080',//navy
+  '#808080',//grey
+  '#FFFFFF',//white
+  '#000000'//black
+];
+
+function chartColorArray(colorAmt){
+
+  var colorArray = new Array([]);
+  if(colorAmt > colorSet.length){
+    var linkArrayAmt = parseInt(colorAmt / colorSet.length);
+    var remArrayAmt =  colorAmt % (colorSet.length);
+    for(var i = 0 ; i < linkArrayAmt; i++){
+      colorArray = colorArray.concat(colorSet);
+    }
+    colorArray = colorArray.concat(colorSet.slice(0 , remArrayAmt));
+  }
+  else{
+    colorArray = colorSet.slice(0 , colorAmt);
+  }
+  return colorArray;
+}
 
 function postRequestHandler(targeturl , payload){
   var encoder = new Base64()
@@ -29,7 +70,7 @@ function getBasicUserData(queryUrl , opFunc){
 function fillDropDownwithData(targetUrl , field , dropdownid , placementid){
 
   getBasicUserData(targetUrl , function(data){
-    console.log("Here are the data " + data[0]._id);
+    //console.log("Here are the data " + data[0]._id);
     var selectHtml = "<select id='" + dropdownid + "'>VALUES</select>";
     var values = "";
     for(var i = 0; i < data[0][field].length; i++){

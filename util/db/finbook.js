@@ -67,6 +67,18 @@ exports.listRecbyFinbook = function(userID , clientStartDate , clientEndDate, re
     }
   }
   var unwindList = {"$unwind": "$reclist"};
+  var projectConf = {
+    "$project":{
+      "_id": 1,
+      "finBookName": 1,
+      "ownerID": 1,
+      "createDate": "$reclist.createDate",
+      "bookPack": 1,
+      "pay_method": "$reclist.payment.pay_method",
+      "amount": "$reclist.payment.amount",
+      "currency": "$reclist.payment.currency"
+    }
+  };
   var date = "2018-02-06";
   var endDate = moment().format('YYYY-MM-DD');
   var startDate = moment().subtract(2 , 'day').format('YYYY-MM-DD');
@@ -80,6 +92,7 @@ exports.listRecbyFinbook = function(userID , clientStartDate , clientEndDate, re
   queryArr.push(matchCondition);
   queryArr.push(joinQuery);
   queryArr.push(unwindList);
+  //queryArr.push(projectConf);
 
   if(clientEndDate != 0){
     queryArr.push(filterendDates);
@@ -88,7 +101,7 @@ exports.listRecbyFinbook = function(userID , clientStartDate , clientEndDate, re
   if(clientStartDate != 0){
     queryArr.push(filterstartDates);
   }
-
+  queryArr.push(projectConf);
 
   console.log(queryArr.toString());
   util.aggregateOpt('finbookInfo' , finHeader , queryArr, res );

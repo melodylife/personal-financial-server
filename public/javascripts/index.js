@@ -7,8 +7,6 @@ $(function() {
   var endDate = moment().add(1 , 'day').format('YYYY-MM-DD');
   var startDate = moment().subtract(10 , 'day').format('YYYY-MM-DD');
 
-  console.log('Here are the dates %s and %s' , endDate , startDate);
-
   requestURL = requestURL + 'userid=' + userID + '&startdate=' + startDate + '&enddate=' + endDate;
   console.log(requestURL);
 
