@@ -127,7 +127,7 @@ function processReportData(rawdata){
 
   console.log(Object.keys(chartDateObj));
   var lineChart = new Chart(lineChartCanvas , {
-    type: 'line',
+    type: 'bar',
     data: {
       datasets: [{
         label: 'Spend',
