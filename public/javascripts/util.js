@@ -98,6 +98,7 @@ function uploadRec() {
   payloadRaw.recid = $('select#finbooklist')[0].value;
   payloadRaw.bookName = $('select#finbooklist')[0].text;
   payloadRaw.payment = payment;
+  payloadRaw.whatfor = $('input#whatfor')[0].value;
 
   var targetUrl = HOST + 'finbook/savefinRec';
   postRequestHandler(targetUrl , JSON.stringify(payloadRaw));

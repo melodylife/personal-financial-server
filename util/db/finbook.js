@@ -22,6 +22,7 @@ var finBookBodySchema = new schema({
   recID: objectId,
   createDate: {type: Date , default:Date.now},
   finbookId: schema.Types.ObjectId,
+  whatfor: String,
   payment: {
     amount: Number,
     currency: {type: String , default: "CNY"},
@@ -50,6 +51,7 @@ exports.createNewRec = function(bookWithName , res){
   rec.finbookId = new mongoose.Types.ObjectId(bookInfoArr[1]);
   rec.payment = bookWithName.payment;
   rec.amount = bookWithName.amount;
+  rec.whatfor = bookWithName.whatfor;
   console.log('Save the rec' + rec.toString());
   var finBookModel = mongoose.model(bookInfoArr[0] , finBookBodySchema);
   var finBookRec = new finBookModel(rec);
