@@ -132,7 +132,7 @@ function processReportData(rawdata){
       datasets: [{
         label: 'Spend',
         data: Object.values(chartDateObj),
-        backgroundColor: "transparent",
+        backgroundColor: "#FF5733",
         borderColor: "#3cba9f"
       }],
       labels: Object.keys(chartDateObj)
